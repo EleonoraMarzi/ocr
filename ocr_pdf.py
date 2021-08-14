@@ -70,12 +70,20 @@ def image_processing(input_path, gray_scale=True, remove_noise=True, tresholding
     return image
 
 
+
 def ocr(processed_image, language):
     custom_config = r'--oem 3 --psm 6'
     ocr_output = pytesseract.image_to_string(processed_image, config=custom_config, lang=language)
     return ocr_output
 
-
+# alternative code to process multilingual text 
+# List of available languages
+# print(pytesseract.get_languages(config=''))
+def ocr(processed_image):
+    custom_config = r'-l fra+eng+ita+spa --psm 6'    
+    ocr_output = pytesseract.image_to_string(img, config=custom_config)
+    return ocr_output
+    
 def save_to_txt(out_name, ocr_res):
     f = open(out_name, 'w')
     f.write(ocr_res)

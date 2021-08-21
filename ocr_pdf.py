@@ -69,6 +69,8 @@ def image_processing(input_path, gray_scale=True, remove_noise=True, tresholding
         image = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
     return image
 
+# open image without columns
+#text_result = pytesseract.image_to_string(Image.open(r'C:\Users\Utente\Documents\Polifonia\OCR\materiale da scannerizzare\ArpaOriginale\Arpa-1853-025-1.jpg'), lang='ita')
 
 
 def ocr(processed_image, language):
@@ -80,7 +82,7 @@ def ocr(processed_image, language):
 # List of available languages
 # print(pytesseract.get_languages(config=''))
 def ocr(processed_image):
-    custom_config = r'-l fra+eng+ita+spa --psm 6'    
+    custom_config = r'-l fra+eng+ita+spa --psm 6'    # code for 4 languages : italian, french, english, spanish
     ocr_output = pytesseract.image_to_string(img, config=custom_config)
     return ocr_output
     
